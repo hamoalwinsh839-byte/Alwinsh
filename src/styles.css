@@ -1,0 +1,111 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-block-1: var(--block-1);
+  --color-block-2: var(--block-2);
+  --color-block-3: var(--block-3);
+  --color-block-4: var(--block-4);
+  --color-block-5: var(--block-5);
+  --color-block-6: var(--block-6);
+  --color-block-7: var(--block-7);
+  --color-grid-cell: var(--grid-cell);
+  --color-grid-bg: var(--grid-bg);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  --background: oklch(0.22 0.08 265);
+  --foreground: oklch(0.98 0.01 240);
+  --card: oklch(0.28 0.09 265);
+  --card-foreground: oklch(0.98 0.01 240);
+  --popover: oklch(0.28 0.09 265);
+  --popover-foreground: oklch(0.98 0.01 240);
+  --primary: oklch(0.75 0.18 60);
+  --primary-foreground: oklch(0.18 0.05 265);
+  --secondary: oklch(0.35 0.09 265);
+  --secondary-foreground: oklch(0.98 0.01 240);
+  --muted: oklch(0.35 0.06 265);
+  --muted-foreground: oklch(0.78 0.04 260);
+  --accent: oklch(0.7 0.2 330);
+  --accent-foreground: oklch(0.98 0.01 240);
+  --destructive: oklch(0.65 0.25 20);
+  --destructive-foreground: oklch(0.98 0.01 240);
+  --border: oklch(0.4 0.08 265);
+  --input: oklch(0.35 0.08 265);
+  --ring: oklch(0.75 0.18 60);
+
+  --grid-bg: oklch(0.18 0.07 265);
+  --grid-cell: oklch(0.3 0.08 265);
+
+  --block-1: oklch(0.7 0.22 25);   /* red */
+  --block-2: oklch(0.78 0.18 70);  /* orange */
+  --block-3: oklch(0.88 0.18 100); /* yellow */
+  --block-4: oklch(0.75 0.2 145);  /* green */
+  --block-5: oklch(0.7 0.18 220);  /* blue */
+  --block-6: oklch(0.65 0.22 285); /* purple */
+  --block-7: oklch(0.72 0.2 330);  /* pink */
+
+  --gradient-bg: linear-gradient(160deg, oklch(0.25 0.1 280), oklch(0.18 0.08 250));
+  --shadow-block: 0 4px 0 rgba(0,0,0,0.25), inset 0 2px 0 rgba(255,255,255,0.25);
+  --shadow-glow: 0 0 30px color-mix(in oklab, var(--primary) 50%, transparent);
+}
+
+.dark { color-scheme: dark; }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { height: 100%; }
+  body {
+    background: var(--gradient-bg);
+    color: var(--color-foreground);
+    font-family: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+    overscroll-behavior: none;
+  }
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); filter: brightness(1.6); }
+  100% { transform: scale(0); opacity: 0; }
+}
+@keyframes float-up {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+.animate-pop { animation: pop 0.35s ease-out forwards; }
+.animate-float-up { animation: float-up 0.9s ease-out forwards; }
+.animate-shake { animation: shake 0.3s ease-in-out; }
